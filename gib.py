@@ -8,19 +8,19 @@ from random import randint
 fo = open('words.txt', "rb")
 lines = fo.readlines()
 maxlines = len(lines)
+sentence_seed = randint(3, 7)
 
- # seed words per sentence
-sentence_seed = randint(3, 6)
-def sentence():
-    words_seed = randint(3,18)
-    str = ""
-    for x in range(0, words_seed):
-        random_line = randint(0, maxlines)
-        str += lines[random_line].rstrip() + " "
+def paragraph(num):
+    sentence = ""
+    for y in range(0, num):
+        words_seed = randint(3,18)
+        words = ""
+        for x in range(0, words_seed):
+            random_line = randint(0, maxlines)
+            words += lines[random_line].rstrip() + " "
+        sentence +=  words.capitalize().rstrip() + "."
+    return sentence
 
-    return str.capitalize().rstrip() + "."
-
-# print str.capitalize().rstrip() + "."
-print(sentence())
+print(paragraph(sentence_seed))
 
 fo.close()
