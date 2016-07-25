@@ -8,19 +8,23 @@ from random import randint
 fo = open('words.txt', "rb")
 lines = fo.readlines()
 maxlines = len(lines)
-sentence_seed = randint(3, 7)
+paragraph_seed = randint(2, 9)
+sentence_seed = randint(3, 15)
 
-def paragraph(num):
-    paragph = ""
-    for y in range(0, num):
-        words_seed = randint(3,18)
-        words = ""
-        for x in range(0, words_seed):
-            random_line = randint(0, maxlines)
-            words += lines[random_line].rstrip() + " "
-        paragph +=  words.capitalize().rstrip() + ". "
-    return paragph
+def gib(paragraphs, sentences):
+    pghs = "" # paragraphs
+    for z in range(0, paragraphs):
+        pgh = "" # paragraph
+        for y in range(0, sentences):
+            words_seed = randint(3,18)
+            words = ""
+            for x in range(0, words_seed):
+                random_line = randint(0, maxlines)
+                words += lines[random_line].rstrip() + " "
+            pgh +=  words.capitalize().rstrip() + ". "
+        pghs += pgh + '\n' + '\n'
+    return pghs
 
-print(paragraph(sentence_seed))
+print(gib(paragraph_seed, sentence_seed))
 
 fo.close()
